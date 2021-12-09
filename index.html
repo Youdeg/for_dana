@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <title>HTML5</title>
+  <script src="https://unpkg.com/vue@next"></script>
+  <style>
+   .delete { 
+       color: red;
+       cursor: pointer;
+   }
+  </style>
+ </head>
+ <body>
+  <div id="app">
+      <div class="newItem">
+          Кодовое имя художника - <input type="text" v-model="codeNameArter"> <br>
+          Имя художника - <input type="text" v-model="nameArter"> <br>
+          Товар - <select v-model="newItem">
+            <option v-for="item in itemsTypes" :value="item.code">{{ item.name }}</option>
+           </select> <br>
+           <button @click="() => {
+               if (!toArters[codeNameArter]) {
+                toArters[codeNameArter] = { name: nameArter, codeName: codeNameArter, value: 0}
+               }
+               itemsList.push({ type: newItem, arter: codeNameArter })
+               valueToShelter = (itemsTypes[newItem].outPrice - itemsTypes[newItem].inPrice) * 0.05
+               valueToArter = (itemsTypes[newItem].outPrice - valueToShelter - itemsTypes[newItem].inPrice) * 0.5
+               balance = itemsTypes[newItem].outPrice - valueToShelter - valueToArter
+
+               toArters[codeNameArter].value += valueToArter
+               toShelter += (itemsTypes[newItem].outPrice - itemsTypes[newItem].inPrice) * 0.05
+               balanceToShop += balance
+            }">Добавить</button>
+      </div>    </br>
+    </br>
+    <div class="itemsList">
+        <span v-for="(item, i) in itemsList" class="item">{{ itemsTypes[item.type].name }} 
+            - {{ toArters[item.arter].name }} <span class="delete" @click="() => {
+                itemsList.splice(i, 1)
+                valueToShelter = (itemsTypes[item.type].outPrice - itemsTypes[item.type].inPrice) * 0.05
+               valueToArter = (itemsTypes[item.type].outPrice - valueToShelter - itemsTypes[item.type].inPrice) * 0.5
+               balance = itemsTypes[item.type].outPrice - valueToShelter - valueToArter
+
+               toArters[item.arter].value -= valueToArter
+               toShelter -= (itemsTypes[item.type].outPrice - itemsTypes[item.type].inPrice) * 0.05
+               balanceToShop -= balance
+            }">Х</span>
+            <br></span>
+    </div>
+    </br>
+    <div class="data">
+        В приюты - {{ toShelter }}р <br> <br>
+        Художникам: </br>
+        <span class="arter" v-for="arter in toArters">
+            {{  arter.name  }} - {{ arter.value }}р <br>
+        </span>
+    </div> <br>
+  </div>
+  <script src="script.js"></script>
+ </body>
+</html>
