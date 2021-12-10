@@ -28,6 +28,12 @@ const items = {
         name: "Открытка",
         outPrice: 100,
         inPrice: 15
+    },
+    "mag": {
+        code: "mag",
+        name: "Магнит",
+        outPrice: 100,
+        inPrice: 31
     }
 };
 
