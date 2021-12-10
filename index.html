@@ -25,7 +25,7 @@
                }
                itemsList.push({ type: newItem, arter: codeNameArter })
                valueToShelter = (itemsTypes[newItem].outPrice - itemsTypes[newItem].inPrice) * 0.05
-               valueToArter = (itemsTypes[newItem].outPrice - valueToShelter - itemsTypes[newItem].inPrice) * 0.2
+               valueToArter = (itemsTypes[newItem].outPrice - valueToShelter - itemsTypes[newItem].inPrice) * 0.5
                balance = itemsTypes[newItem].outPrice - valueToShelter - valueToArter
 
                toArters[codeNameArter].value += valueToArter
@@ -39,7 +39,7 @@
             - {{ toArters[item.arter].name }} <span class="delete" @click="() => {
                 itemsList.splice(i, 1)
                 valueToShelter = (itemsTypes[item.type].outPrice - itemsTypes[item.type].inPrice) * 0.05
-               valueToArter = (itemsTypes[item.type].outPrice - valueToShelter - itemsTypes[item.type].inPrice) * 0.2
+               valueToArter = (itemsTypes[item.type].outPrice - valueToShelter - itemsTypes[item.type].inPrice) * 0.5
                balance = itemsTypes[item.type].outPrice - valueToShelter - valueToArter
 
                toArters[item.arter].value -= valueToArter
